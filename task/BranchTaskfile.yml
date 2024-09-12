@@ -1,0 +1,14 @@
+version: "3"
+
+tasks:
+  create-feature:
+    cmds:
+      - git checkout -b feature/{{.CLI_ARGS}}
+    vars:
+      BRANCH:
+        sh: git rev-parse --abbrev-ref HEAD
+    preconditions:
+      - sh: "[[ {{.BRANCH}} =~ ^main$ ]]"
+        msg: このタスクは "main" ブランチで実行できます。 "{{.BRANCH}}" では実行できません。
+      - sh: "[ {{.CLI_ARGS}} != '' ]"
+        msg: "Ticket number is missing. Please specify ticket number with -- option."

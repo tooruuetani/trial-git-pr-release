@@ -1,0 +1,45 @@
+version: "3"
+
+includes:
+  BRANCH: ./task/BranchTaskfile.yml
+  PR: ./task/PRTaskfile.yml
+  SELECT: ./task/SelectTaskfile.yml
+
+tasks:
+  default:
+    cmds:
+      - task: SELECT:default
+
+  common:BRANCH:create-feature:
+    desc: Create "feature" brnach.
+    cmds:
+      - task: BRANCH:create-feature
+
+  common:PR:to_main:
+    desc: Create pull-request to main.
+    cmds:
+      - task: PR:to_main
+
+  stg:PR:to_release_events:
+    desc: Create pull-request for deploying events to stg.
+    cmds:
+      - task: PR:to_release
+        vars: { STAGE: "stg", SUBSYSTEM: "events" }
+
+  prod:PR:to_release_events:
+    desc: Create pull-request for deploying events to prod.
+    cmds:
+      - task: PR:to_release
+        vars: { STAGE: "prod", SUBSYSTEM: "events" }
+
+  stg:PR:to_release_web_app:
+    desc: Create pull-request for deploying webapp to stg.
+    cmds:
+      - task: PR:to_release
+        vars: { STAGE: "stg", SUBSYSTEM: "webapp" }
+
+  prod:PR:to_release_web_app:
+    desc: Create pull-request for deploying webapp to prod.
+    cmds:
+      - task: PR:to_release
+        vars: { STAGE: "prod", SUBSYSTEM: "webapp" }
