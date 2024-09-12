@@ -19,6 +19,6 @@ jobs:
         env:
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: release/prod/events
-          GIT_PR_RELEASE_BRANCH_STAGING: ${{ github.head_ref}}
+          GIT_PR_RELEASE_BRANCH_STAGING: ${{ github.ref_name }}
           GIT_PR_RELEASE_LABELS: prod/events
           TZ: Asia/Tokyo
