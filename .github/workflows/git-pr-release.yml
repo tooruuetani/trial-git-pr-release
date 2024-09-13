@@ -3,7 +3,7 @@ name: git-pr-release
 on:
   push:
     branches:
-      - deploy/[0-9-a-f]+/[ps]*/*
+      - "deploy/[0-9-a-f]+/[ps]*/*"
 jobs:
   git-pr-release:
     runs-on: ubuntu-latest
