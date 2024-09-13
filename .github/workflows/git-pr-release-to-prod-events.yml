@@ -17,7 +17,7 @@ jobs:
       - run: gem install --no-document git-pr-release
       - id: context
         run: |          
-          SHORT_SHA=$(echo $HEAD_SHA | cut -c -7)
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c -7)
           echo "sha=$SHORT_SHA" >> $GITHUB_OUTPUT
       - run: git-pr-release
         env:
