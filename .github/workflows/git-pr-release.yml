@@ -17,8 +17,12 @@ jobs:
       - run: gem install --no-document git-pr-release
       - run: git-pr-release
         env:
+          SHA: ${{ github.sha }}
+          STAGE: prod
+          SYSTEM: webapp
           GIT_PR_RELEASE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GIT_PR_RELEASE_BRANCH_PRODUCTION: release/prod/events
           GIT_PR_RELEASE_BRANCH_STAGING: ${{ github.ref_name }}
-          GIT_PR_RELEASE_LABELS: prod/events
+          GIT_PR_RELEASE_LABELS: release,prod,events
+          GIT_PR_RELEASE_TEMPLATE: .github/templates/git-pr-release.erb
           TZ: Asia/Tokyo
